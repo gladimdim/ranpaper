@@ -2,6 +2,8 @@
 
 class Wallpaper
 	attr_reader :result
+	attr_reader :random_image
+	@random_image = nil
 	@wallpaper = ""
 	@result = nil
 	def initialize(wallpaper_dir)
@@ -32,15 +34,23 @@ class Wallpaper
 	
 	def select_random_image
 		if self.get_list_of_images != nil then
-			image = self.get_list_of_images[0 + rand(self.get_list_of_images().size())]
-		return image
+			random_image = self.get_list_of_images[0 + rand(self.get_list_of_images().size())]
+			return random_image
 		else 
 			return nil
 		end
 	end
 end
 
-@input_dir = "/home/gladimdim/Documents/wallpapers/"
+@config_file = ENV['HOME'] + "/.ranpaper"
+if !File::file?(@config_file) then
+	puts "Please create file in your home directory \"~/.ranpaper\" and add full path to directory with wallpapers. Then rerun program."
+	Kernel.exit
+end
+
+file = File.open(@config_file)
+
+@input_dir = File.read(file).chomp! #"/home/gladimdim/Documents/wallpapers/"
 
 if !File::directory?(@input_dir) then
 	puts "Specified directory \""<< @input_dir << "\" could not be found"
