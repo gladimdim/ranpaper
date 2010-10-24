@@ -1,4 +1,4 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
 
 class Wallpaper
 	attr_reader :result
@@ -50,7 +50,7 @@ end
 
 file = File.open(@config_file)
 
-@input_dir = File.read(file).chomp! #"/home/gladimdim/Documents/wallpapers/"
+@input_dir = File.read(file).to_s.chomp! 
 
 if !File::directory?(@input_dir) then
 	puts "Specified directory \""<< @input_dir << "\" could not be found"
