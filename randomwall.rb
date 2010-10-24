@@ -16,8 +16,7 @@ class Wallpaper
 
 	#First we load all files from input directory
 	def get_list_of_files
-		@list_of_files = Array.new
-		@list_of_files = Dir.entries(@wallpaper_dir) if File::directory?(@wallpaper_dir)
+		@list_of_files = Dir.entries(@wallpaper_dir) 
 		return @list_of_files
 	end
 
@@ -55,7 +54,7 @@ random_image = @input_dir << wallpap.select_random_image()
 value = system(@feh_command)
 
 if $?.exitstatus == 0 then
-	puts "Wallpaper will be set: " + random_image if $?.exitstatus == 0
-	else puts "Error setting wallpaper image: " + random_image
-	end
+	puts "Wallpaper was set: " + random_image if $?.exitstatus == 0
+	else puts "Error seting wallpaper image: " + random_image
+end
  
