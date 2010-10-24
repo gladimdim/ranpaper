@@ -3,12 +3,6 @@
 class Wallpaper
 	def initialize(wallpaper_dir)
 		@wallpaper_dir = wallpaper_dir
-		if self.get_list_of_images = nil then
-			return nil
-		else
-			continue
-		end
-	
 	end
 	attr_reader :wallpapper_dir
 	attr_reader :list_of_images
