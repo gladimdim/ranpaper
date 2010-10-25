@@ -6,6 +6,7 @@ class Wallpaper
 	@random_image = nil
 	@wallpaper = ""
 	@result = nil
+	@list_of_images = Array.new 
 	def initialize(wallpaper_dir)
 		if File::directory?(wallpaper_dir) then
 			@wallpaper_dir = wallpaper_dir
@@ -13,7 +14,7 @@ class Wallpaper
 		else
 			result = nil
 		end
-		
+	
 	end
 
 	#First we load all files from input directory
@@ -24,7 +25,6 @@ class Wallpaper
 
 	#Only images with specified extensions "bmp", "jpg", "gif" are left
 	def get_list_of_images
-		@list_of_images = Array.new
 		if self.get_list_of_files() != nil then 
 			self.get_list_of_files().each { |file| @list_of_images << file if file.to_s.include?("gif") or file.to_s.include?("jpg") or file.to_s.include?("bmp")	}
 		return @list_of_images
@@ -33,8 +33,8 @@ class Wallpaper
 	end
 	
 	def select_random_image
-		if self.get_list_of_images != nil then
-			random_image = self.get_list_of_images[0 + rand(self.get_list_of_images().size())]
+		if @list_of_images != nil then
+			random_image = @list_of_images[0 + rand(@list_of_images.size())]
 			return random_image
 		else 
 			return nil
@@ -42,7 +42,9 @@ class Wallpaper
 	end
 end
 
+#Setting path to ~/.ranpaper file which contains single string to wallpapers directory
 @config_file = ENV['HOME'] + "/.ranpaper"
+
 if !File::file?(@config_file) then
 	puts "Please create file in your home directory \"~/.ranpaper\" and add full path to directory with wallpapers. Then rerun program."
 	Kernel.exit
@@ -59,14 +61,23 @@ end
 
 wallpap = Wallpaper.new(@input_dir)
 
-random_image = @input_dir << wallpap.select_random_image()
+if wallpap.random_image != nil then
+	random_image = @input_dir << wallpap.random_image
+	else 
+		puts ("No images where found in " + @input_dir + ". Terminating.")
+		Kernel.exit
+end
+
 @feh_command = "feh --bg-scale " + random_image
+@fbsetbg_command = "fbsetbg -f " + random_image
+
 value = system(@feh_command)
 
-if $?.exitstatus == 0 then
+if $?.exitstatus != 0 then
 	value = system(@fbsetbg_command)
-	if $?.existatus == 0 then
+	if $?.exitstatus == 0 then
 		puts "Wallpaper was set: " + random_image if $?.exitstatus == 0
 		else puts "Error seting wallpaper image: " + random_image
+	end
 end
  
