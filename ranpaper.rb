@@ -64,7 +64,9 @@ random_image = @input_dir << wallpap.select_random_image()
 value = system(@feh_command)
 
 if $?.exitstatus == 0 then
-	puts "Wallpaper was set: " + random_image if $?.exitstatus == 0
-	else puts "Error seting wallpaper image: " + random_image
+	value = system(@fbsetbg_command)
+	if $?.existatus == 0 then
+		puts "Wallpaper was set: " + random_image if $?.exitstatus == 0
+		else puts "Error seting wallpaper image: " + random_image
 end
  
