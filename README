@@ -1,5 +1,5 @@
 You can modify and distribute this program for free. No license attached.
 
-This program requires installed Ruby language and "feh" package.
+This program requires installed Ruby language and "feh" or "fbsetbg" package. Program will first try to set wallpaper using "feh" and then using "fbsetbg".
 
 To use program you should have file ~/.ranpaper with path to your directory with wallpaper images.
