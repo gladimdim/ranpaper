@@ -15,7 +15,6 @@ class Wallpaper
 			@@wallpaper_dir = wallpaper_dir
 			self.get_list_of_images()
 			self.select_random_image()
-			puts @@random_image
 		else
 			result = nil
 		end
@@ -40,7 +39,6 @@ class Wallpaper
 	def select_random_image
 		if @@list_of_images != nil then
 			@@random_image = @@list_of_images[0 + rand(@@list_of_images.size())]
-			puts @@random_image
 			return @@random_image
 		else 
 			return nil
@@ -66,7 +64,7 @@ if !File::directory?(input_dir) then
 end
 
 wallpap = Wallpaper.new(input_dir)
-puts wallpap.random_image
+
 if wallpap.random_image != nil then
 	random_image = input_dir << wallpap.random_image
 	else 
