@@ -46,6 +46,10 @@ class Wallpaper
 	end
 end
 
+def success(app, wallpaper)
+	puts "Wallpaper \"" + wallpaper + "\" was set using " + app
+end
+
 #Setting path to ~/.ranpaper file which contains single string to wallpapers directory
 config_file = ENV['HOME'] + "/.ranpaper"
 
@@ -77,11 +81,14 @@ fbsetbg_command = "fbsetbg -f " + random_image
 
 value = system(feh_command)
 
-if $?.exitstatus != 0 then
-	value = system(fbsetbg_command)
-	if $?.exitstatus == 0 then
-		puts "Wallpaper was set: " + random_image if $?.exitstatus == 0
+if $?.exitstatus == 0 then
+	success("feh", random_image)
+	else 
+		value = system(fbsetbg_command)
+		if $?.exitstatus == 0 then
+			success("fbsetbg", random_image)
 		else puts "Error seting wallpaper image: " + random_image
 	end
+	
 end
  
