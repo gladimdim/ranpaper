@@ -53,7 +53,7 @@ end
 if ARGV != nil then
 	ARGV.each do |arg|
 		if arg == "--help" then
-			puts "Random wallpaper changer.\nSpecify in file ~/.ranpaper a single string with path to directory with wallpapers.\nEach time ranpaper is run it will randomly select wallpaper from specified directory. You need to have \"feh\" or \"fbsetbg\" packages installed. Application will first try to use \"feh\" and then \"fbsetbg\"."
+			puts "Random wallpaper changer.\nSpecify in file ~/.ranpaper a single string with path to directory with wallpapers.\nEach time ranpaper is run it will randomly select wallpaper from specified directory. Only jpg, bmp and gif files are supported. You need to have \"feh\" or \"fbsetbg\" packages installed. Application will first try to use \"feh\" and then \"fbsetbg\"."
 			puts "\nAuthor: Dmitry Gladkiy <gladimdim@gmail.com>."
 			puts "\nVisit http://github.com/gladimdim/ranpaper for new versions."
 			Kernel.exit
@@ -66,7 +66,7 @@ end
 config_file = ENV['HOME'] + "/.ranpaper"
 
 if !File::file?(config_file) then
-	puts "Please create file in your home directory \"~/.ranpaper\" and add full path to directory with wallpapers. Then rerun program. Only jpg, bmp and gif files are supported"
+	puts "Please create file in your home directory \"~/.ranpaper\" and add full path to directory with wallpapers. Then rerun program."
 	Kernel.exit
 end
 
