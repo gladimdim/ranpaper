@@ -50,6 +50,18 @@ def success(app, wallpaper)
 	puts "Wallpaper \"" + wallpaper + "\" was set using " + app
 end
 
+if ARGV != nil then
+	ARGV.each do |arg|
+		if arg == "--help" then
+			puts "Random wallpaper changer.\nSpecify in file ~/.ranpaper a single string with path to directory with wallpapers.\nEach time ranpaper is run it will randomly select wallpaper from specified directory. You need to have \"feh\" or \"fbsetbg\" packages installed. Application will first try to use \"feh\" and then \"fbsetbg\"."
+			puts "\nAuthor: Dmitry Gladkiy <gladimdim@gmail.com>."
+			puts "\nVisit http://github.com/gladimdim/ranpaper for new versions."
+			Kernel.exit
+		end
+	end
+end
+
+
 #Setting path to ~/.ranpaper file which contains single string to wallpapers directory
 config_file = ENV['HOME'] + "/.ranpaper"
 
