@@ -66,7 +66,7 @@ end
 config_file = ENV['HOME'] + "/.ranpaper"
 
 if !File::file?(config_file) then
-	puts "Please create file in your home directory \"~/.ranpaper\" and add full path to directory with wallpapers. Then rerun program."
+	puts "Please create file in your home directory \"~/.ranpaper\" and add full path to directory with wallpapers. Then rerun program. Only jpg, bmp and gif files are supported"
 	Kernel.exit
 end
 
