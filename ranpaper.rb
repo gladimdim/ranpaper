@@ -49,16 +49,44 @@ end
 def success(app, wallpaper)
 	puts "Wallpaper \"" + wallpaper + "\" was set using " + app
 end
-
-if ARGV != nil then
+if ARGV.count != 0 then
 	ARGV.each do |arg|
 		if arg == "--help" then
-			puts "Random wallpaper changer.\nSpecify in file ~/.ranpaper a single string with path to directory with wallpapers.\nEach time ranpaper is run it will randomly select wallpaper from specified directory. Only jpg, bmp and gif files are supported. You need to have \"feh\" or \"fbsetbg\" packages installed. Application will first try to use \"feh\" and then \"fbsetbg\"."
+
+			puts "Usage:"
+			puts "--test - testing which background setters can be used."
+			puts "--help - print this help."
+			puts
+			puts "Random wallpaper changer."
+			puts "Specify in file ~/.ranpaper a single string with path to directory with wallpapers. Each time ranpaper is run it will randomly select wallpaper from specified directory.\n" +
+				"Only jpg, bmp and gif files are supported. You need to have \"feh\" or \"fbsetbg\" packages installed. " + 
+				"Application will first try to use \"feh\" and then \"fbsetbg\"."
+
 			puts "\nAuthor: Dmitry Gladkiy <gladimdim@gmail.com>."
-			puts "\nVisit http://github.com/gladimdim/ranpaper for new versions."
+			puts "\nVisit http://github.com/gladimdim/ranpaper for new versions.\n"
+
 			Kernel.exit
 		end
+		if arg == "--test" then
+			value = system("feh -h > /dev/null")
+			if $?.exitstatus == 0 then
+				puts "feh package is installed and can be used by random wallpaper application."
+			else
+				puts "feh package is not installed."
+			end
+			value = system "fbsetbg -h > /dev/null"
+
+			if $?.exitstatus == 0 then
+				puts "fbsetbg package is installed and can be used by random wallpaper application."
+			else
+				puts "feh package is not installed."
+			end
+			Kernel.exit
+		end
+
 	end
+	puts ("Unknow argument. Try --help to get list of available arguments.")
+	Kernel.exit
 end
 
 
