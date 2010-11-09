@@ -1,2 +1,4 @@
 1. Add changing by weekday feature.
-2. Add support for wbsetbg application.
+2. Add support for wbsetbg application. + DONE
+3. Add support for more background setters.
+4. Restucture application. Move objects into classes. + DONE

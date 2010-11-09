@@ -48,23 +48,11 @@ setter_ranpaper = Setter.new
 wallpap = Wallpaper.new(setter_ranpaper.input_dir)
 
 if wallpap.random_image != nil then
-	random_image = setter_ranpaper.input_dir << wallpap.random_image
+	image_to_set = wallpap.random_image
 	else 
 		puts ("No images were found in #{setter_ranpaper.input_dir}. Terminating.")
 		Kernel.exit
 end
 
+value = setter_ranpaper.set(image_to_set) 
 
-value = setter_ranpaper.set_feh(wallpap.random_image) 
-
-if $?.exitstatus == 0 then
-	setter_ranpaper.success_set("feh", wallpap.random_image)
-	else 
-		value = setter_ranpaper.set_fbsetbg(wallpap.random_image)
-		if $?.exitstatus == 0 then
-			setter_ranpaper.success_set("fbsetbg", wallpap.random_image)
-		else puts "Error setting wallpaper image: #{wallpap.random_image}"
-	end
-	
-end
- 
