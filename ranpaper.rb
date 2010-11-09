@@ -12,8 +12,8 @@ if ARGV.count != 0 then
 			puts
 			puts "Random wallpaper changer."
 			puts "Specify in file ~/.ranpaper a single string with path to directory with wallpapers. Each time ranpaper is run it will randomly select wallpaper from specified directory.\n" +
-				"Only jpg, bmp and gif files are supported. You need to have \"feh\" or \"fbsetbg\" packages installed. " + 
-				"Application will first try to use \"feh\" and then \"fbsetbg\"."
+				"Only jpg, bmp and gif files are supported. You need to have \"feh\", \"wmsetbg\" or \"fbsetbg\" packages installed. " + 
+				"Application will try to set wallpaper with all of them."
 
 			puts "\nAuthor: Dmitry Gladkiy <gladimdim@gmail.com>."
 			puts "\nVisit http://github.com/gladimdim/ranpaper for new versions.\n"
@@ -33,6 +33,13 @@ if ARGV.count != 0 then
 				puts "fbsetbg package is installed and can be used by random wallpaper application."
 			else
 				puts "feh package is not installed."
+			end
+
+			value = system "wmsetbg --help > /dev/null"
+			if $?.exitstatus == 0 then
+				puts "wmsetbg package is installed and can be used by random wallpaper application".
+			else
+				puts "wmsetbg package is not installed."
 			end
 			Kernel.exit
 		end
