@@ -3,3 +3,5 @@ You can modify and distribute this program for free. No license attached.
 This program requires installed Ruby language and "feh" "wmsetg" or "fbsetbg" package. Program will try to set wallpaper using each of them.
 
 To use program you should have file ~/.ranpaper with path to your directory with wallpaper images.
+
+Delete after commit.
