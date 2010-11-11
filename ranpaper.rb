@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
-require "./Wallpaper.rb"
-require "./Setter.rb"
+require "#{File.dirname(__FILE__)}/Wallpaper.rb"
+require "#{File.dirname(__FILE__)}/Setter.rb"
 
 if ARGV.count != 0 then
 	ARGV.each do |arg|
@@ -46,7 +46,9 @@ end
 #Setting path to ~/.ranpaper file which contains single string to wallpapers directory
 setter_ranpaper = Setter.new
 wallpap = Wallpaper.new(setter_ranpaper.input_dir)
-
+wallpap.get_list_of_files()
+wallpap.get_list_of_images()
+wallpap.select_random_image()
 if wallpap.random_image != nil then
 	image_to_set = wallpap.random_image
 	else 
