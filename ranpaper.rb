@@ -53,9 +53,6 @@ end
 #Setting path to ~/.ranpaper file which contains single string to wallpapers directory
 setter_ranpaper = Setter.new
 wallpap = Wallpaper.new(setter_ranpaper.input_dir)
-wallpap.get_list_of_files()
-wallpap.get_list_of_images()
-wallpap.select_random_image()
 if wallpap.random_image != nil then
 	image_to_set = wallpap.random_image
 	else 

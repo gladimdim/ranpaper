@@ -2,7 +2,6 @@ class Setter
 	attr_reader :input_dir, :config_file, :list_of_setters
 	@list_of_setters = Array.new
 	@list_of_setters = ["feh", "fbsetbg", "wmsetbg"]
-
 	def initialize 
 		@config_file = ENV['HOME'] + "/.ranpaper"
 		if !File::file?(config_file) then
@@ -49,4 +48,5 @@ class Setter
 
 		end
 	end
+	private :success_set
 end
