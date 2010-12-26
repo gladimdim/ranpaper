@@ -5,11 +5,11 @@ class Setter
 	def initialize 
 		@config_file = ENV['HOME'] + "/.ranpaper"
 		if !File::file?(config_file) then
-			puts "Please create file in your home directory \"~/.ranpaper\" and add full path to directory with wallpapers. Then rerun program."
+			puts "Please create file in your home directory \"~/.ranpaper\" and add full path (with trailing ""/"") to directory with wallpapers. Then rerun program."
 			Kernel.exit
 		end
 		file = File.open(config_file)
-		@input_dir = File.read(file).to_s.chomp! 
+		@input_dir = file.gets.chomp! 
 		if !File::directory?(input_dir) then
 			puts "Specified directory \""<< input_dir << "\" could not be found"
 			Kernel.exit()
