@@ -56,7 +56,7 @@ wallpap = Wallpaper.new(setter_ranpaper.input_dir)
 if wallpap.random_image != nil then
 	image_to_set = wallpap.random_image
 	else 
-		puts ("No images were found in #{setter_ranpaper.input_dir}. Terminating.")
+		puts "No images were found in #{setter_ranpaper.input_dir}. Terminating."
 		Kernel.exit
 end
 
